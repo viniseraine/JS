@@ -58,3 +58,6 @@ while (!isPrime(startingNumber)) {
 const nextPrimes = findNextPrimes(startingNumber, 10);
 //Exibe na tela uma frase com o número que o usuário digitou e uma lista com os 10 proximos números primos
 alert(Os próximos 10 números primos após ${startingNumber}: ${nextPrimes});
+
+//Nomes: João Pedro de Azevedo Duarte (RA 2024101331) / Vinicius Seraine Ramalho Rodrigues (RA 2024101195) / Pedro Henrique Ribeiro de Jesus Gomes (RA 2024101197)
+//Turma 123N-89719 Javascript
