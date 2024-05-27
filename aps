@@ -50,8 +50,8 @@ let startingNumber = parseInt(prompt("Digite um número primo:"));
 //Essa estrutura basicamente checa se o número é primo, ja que a função isPrime retorna o valor TRUE se o número for primo
 //adicionamos a ! que significa "não" e invertemos esse valor booleano, ou seja, false.
 
-while (!isPrime(startingNumber)) {
-    alert(${startingNumber} não é um número primo. Tente novamente. );
+while (!isPrime(startingNumber)) 
+    {alert(${startingNumber} não é um número primo. Tente novamente. );
     startingNumber = parseInt(prompt("Digite um número primo:"));}
 
 //Define uma variavel que chama a função findNextPrimes, que cria aquela lista de números primos
