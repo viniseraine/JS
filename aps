@@ -1,63 +1,174 @@
+// Função para verificar se um número é primo
 function isPrime(startingNumber) {
-    
-    //Verifica se o número é 1 ou menor e retorna falso
+    // Verifica se o número é 1 ou menor e retorna falso
     if (startingNumber <= 1) return false;
-    
-    //Verifica se o número é 3 ou menor e retorna falso
+    // Verifica se o número é 2 ou 3 e retorna verdadeiro
     if (startingNumber <= 3) return true;
-
-    //Laço que itera de i (que começa em 2) até startingNum - 1
-    for (let i = 2; i < startingNumber; i++) {
-        
-        //Verifica se o resto da divisão é 0 por todo valor de i, sendo assim o número não é primo
-        if (startingNumber % i === 0) {
+    // Verifica se o número é divisível por 2 ou 3 e retorna falso
+    if (startingNumber % 2 === 0 || startingNumber % 3 === 0) return false;
+    
+    // Laço que itera de i (que começa em 5) até a raiz quadrada do startingNumber
+    for (let i = 5; i * i <= startingNumber; i += 6) {
+        // Verifica se o número é divisível por i ou i + 2
+        if (startingNumber % i === 0 || startingNumber % (i + 2) === 0) {
             return false;
         }
     }
-    //Função retorna verdadeiro se todas as outras checagens forem falsas, ou seja, o número é primo
-    return true;}
+    // Se passar por todos os testes acima, o número é primo
+    return true;
+}
 
-
-//Função que recebe startingNum(que vai ser um número digitado pelo usuário) e count(que vai ser um contador, no caso do exercicio esse contador tem que ser 10)
+// Função para encontrar os próximos números primos
 function findNextPrimes(startingNumber, count) {
-    
-    //Cria uma lista chamada primes, vazia
+    // Cria uma lista chamada primes, vazia
     const primes = [];
-    
-    //Define uma variavel "numero atual" que recebe o valor do numero digitado pelo usuario
+    // Define uma variável "numero atual" que recebe o valor do numero digitado pelo usuário
     let currentNum = startingNumber;
 
-    //Estrutura repetitiva que diz: Enquanto (tamanho da lista primes for menor ou igual ao contador, faça:)
-    while (primes.length <= count) {
-        
-        //Verifica se o número atual é um número primo
+    // Estrutura repetitiva que diz: enquanto (tamanho da lista primes for menor que o contador, faça:)
+    while (primes.length < count) {
+        // Verifica se o número atual é um número primo
         if (isPrime(currentNum)) {
-            //Se o número atual é um número primo, ele é adicionado a nossa lista "primes" com a função push
+            // Se o número atual é um número primo, ele é adicionado a nossa lista "primes" com a função push
             primes.push(currentNum);
         }
-        //Adiciona +1 ao número atual que ta sendo checado
+        // Adiciona +1 ao número atual que está sendo checado
         currentNum++;
     }
-    //Retorna a nossa lista "primes" com os números primos dentro
-    return primes;}
+    // Retorna a nossa lista "primes" com os números primos dentro
+    return primes;
+}
 
-//Essa parte do código básicamente chama as funções e exibe as coisas na tela
-
-//Define startingNumber com uma entrada do usuário
+// Pede ao usuário para digitar um número primo
 let startingNumber = parseInt(prompt("Digite um número primo:"));
 
-//Estrutura repetitiva que diz: Enquanto (não isPrime(numero que o usuario digitou))
-//Essa estrutura basicamente checa se o número é primo, ja que a função isPrime retorna o valor TRUE se o número for primo
-//adicionamos a ! que significa "não" e invertemos esse valor booleano, ou seja, false.
+// Enquanto o número digitado não for primo, pede ao usuário para digitar novamente
+while (!isPrime(startingNumber)) {
+    alert(`${startingNumber} não é um número primo. Tente novamente.`);
+    startingNumber = parseInt(prompt("Digite um número primo:"));
+}
 
-while (!isPrime(startingNumber)) 
-    {alert(${startingNumber} não é um número primo. Tente novamente. );
-    startingNumber = parseInt(prompt("Digite um número primo:"));}
+// Pede ao usuário para digitar quantos números primos seguintes ele deseja encontrar
+let count = parseInt(prompt("Quantos números primos você deseja encontrar após " + startingNumber + "?"));
 
-//Define uma variavel que chama a função findNextPrimes, que cria aquela lista de números primos
-const nextPrimes = findNextPrimes(startingNumber, 10);
-//Exibe na tela uma frase com o número que o usuário digitou e uma lista com os 10 proximos números primos
-alert(Os próximos 10 números primos após ${startingNumber}: ${nextPrimes});
+// Chama a função para encontrar os próximos números primos e exibe o resultado
+let nextPrimes = findNextPrimes(startingNumber, count);
+alert("Os próximos " + count + " números primos após " + startingNumber + " são: " + nextPrimes.join(", "));
+// Função para verificar se um número é primo
+function isPrime(startingNumber) {
+    // Verifica se o número é 1 ou menor e retorna falso
+    if (startingNumber <= 1) return false;
+    // Verifica se o número é 2 ou 3 e retorna verdadeiro
+    if (startingNumber <= 3) return true;
+    // Verifica se o número é divisível por 2 ou 3 e retorna falso
+    if (startingNumber % 2 === 0 || startingNumber % 3 === 0) return false;
+    
+    // Laço que itera de i (que começa em 5) até a raiz quadrada do startingNumber
+    for (let i = 5; i * i <= startingNumber; i += 6) {
+        // Verifica se o número é divisível por i ou i + 2
+        if (startingNumber % i === 0 || startingNumber % (i + 2) === 0) {
+            return false;
+        }
+    }
+    // Se passar por todos os testes acima, o número é primo
+    return true;
+}
+
+// Função para encontrar os próximos números primos
+function findNextPrimes(startingNumber, count) {
+    // Cria uma lista chamada primes, vazia
+    const primes = [];
+    // Define uma variável "numero atual" que recebe o valor do numero digitado pelo usuário
+    let currentNum = startingNumber;
+
+    // Estrutura repetitiva que diz: enquanto (tamanho da lista primes for menor que o contador, faça:)
+    while (primes.length < count) {
+        // Verifica se o número atual é um número primo
+        if (isPrime(currentNum)) {
+            // Se o número atual é um número primo, ele é adicionado a nossa lista "primes" com a função push
+            primes.push(currentNum);
+        }
+        // Adiciona +1 ao número atual que está sendo checado
+        currentNum++;
+    }
+    // Retorna a nossa lista "primes" com os números primos dentro
+    return primes;
+}
+
+// Pede ao usuário para digitar um número primo
+let startingNumber = parseInt(prompt("Digite um número primo:"));
+
+// Enquanto o número digitado não for primo, pede ao usuário para digitar novamente
+while (!isPrime(startingNumber)) {
+    alert(`${startingNumber} não é um número primo. Tente novamente.`);
+    startingNumber = parseInt(prompt("Digite um número primo:"));
+}
+
+// Pede ao usuário para digitar quantos números primos seguintes ele deseja encontrar
+let count = parseInt(prompt("Quantos números primos você deseja encontrar após " + startingNumber + "?"));
+
+// Chama a função para encontrar os próximos números primos e exibe o resultado
+let nextPrimes = findNextPrimes(startingNumber, count);
+alert("Os próximos " + count + " números primos após " + startingNumber + " são: " + nextPrimes.join(", "));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+    
+</body>
+</html>
 
 //Nomes: João Pedro de Azevedo Duarte (RA 2024101331) / Vinicius Seraine Ramalho Rodrigues (RA 2024101195) / Pedro Henrique Ribeiro de Jesus Gomes (RA 2024101197)
 //Turma 123N-89719 Javascript
